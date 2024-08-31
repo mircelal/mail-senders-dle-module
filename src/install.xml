@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dleplugin>
+	<name> Mail-Senders </name>
+	<description> Mail-Senders CMS DLE </description>
+	<icon></icon>
+	<version> 0.0.1 </version>
+	<dleversion> 16.0 </dleversion>
+	<versioncompare> greater </versioncompare>
+	<upgradeurl></upgradeurl>
+	<filedelete> 1 </filedelete>
+	<needplugin></needplugin>
+	<mnotice> 1 </mnotice>
+	<mysqlinstall>
+		<![CDATA[CREATE TABLE IF NOT EXISTS `dle_mail_senders` (
+					`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+					`name` VARCHAR(255) NOT NULL,
+					`surname` VARCHAR(255) DEFAULT NULL,
+					`mail` VARCHAR(255) NOT NULL, 
+					`phone` VARCHAR(255) NOT NULL,
+					`current_time_stamp` TIME DEFAULT CURRENT_TIMESTAMP()
+				);]]>
+	</mysqlinstall>
+	<mysqlupgrade> <![CDATA[]]> </mysqlupgrade>
+	<mysqlenable>
+		<![CDATA[INSERT INTO {prefix}_admin_sections (name, title, descr, icon, allow_groups) VALUES ('mailsenders', 'Mail-Senders', 'Mail-Senders CMS', '/engine/skins/images/icons/mailsenders.png', 1);]]>
+	</mysqlenable>
+	<mysqldisable>
+		<![CDATA[DELETE FROM {prefix}_admin_sections WHERE `name` = 'mailsenders']]>
+	</mysqldisable>
+	<mysqldelete>
+		<![CDATA[DROP TABLE {prefix}_mail_senders;DELETE FROM {prefix}_admin_sections WHERE `name` = 'mailsenders';]]>
+	</mysqldelete>
+	<phpinstall><![CDATA[]]></phpinstall>
+	<phpupgrade><![CDATA[]]></phpupgrade>
+	<phpenable><![CDATA[]]></phpenable>
+	<phpdisable><![CDATA[]]></phpdisable>
+	<phpdelete><![CDATA[]]></phpdelete>
+	<file name="engine/modules/functions.php">
+		<operation action="before">
+			<searchcode> <![CDATA[function userrating($id) {]]> </searchcode>
+			<replacecode> <![CDATA[include_once (ENGINE_DIR . "/modules/mailsenders/mailsenders.php");]]> </replacecode>
+			<enabled> 1 </enabled>
+		</operation>
+	</file>
+	<notice>
+<![CDATA[
+Module creator ehmedp,
+
+To use the module set globally mail_sender_info_save($name, $last_name, $tel, $email); you can use the function
+
+$name : string => the name of the user who sent the mail
+$last_name : string => last name of the user who sent the mail
+$tel : string => tel of the user who sent the tel
+$email : string => The email of the user who sent the email
+
+The function should be used if the mail sending process is successful.
+
+Returns an error message if the function is not used correctly.]]>
+	</notice>
+</dleplugin>
