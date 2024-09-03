@@ -17,7 +17,7 @@
 					`surname` VARCHAR(255) DEFAULT NULL,
 					`mail` VARCHAR(255) NOT NULL, 
 					`phone` VARCHAR(255) NOT NULL,
-					`current_time_stamp` TIME DEFAULT CURRENT_TIMESTAMP()
+					`current_time_stamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
 				);]]>
 	</mysqlinstall>
 	<mysqlupgrade> <![CDATA[]]> </mysqlupgrade>
