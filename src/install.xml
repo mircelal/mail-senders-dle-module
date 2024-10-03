@@ -11,7 +11,7 @@
 	<needplugin></needplugin>
 	<mnotice> 1 </mnotice>
 	<mysqlinstall>
-		<![CDATA[CREATE TABLE IF NOT EXISTS `dle_mail_senders` (
+		<![CDATA[CREATE TABLE IF NOT EXISTS `{prefix}_mail_senders` (
 					`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 					`name` VARCHAR(255) NOT NULL,
 					`surname` VARCHAR(255) DEFAULT NULL,
